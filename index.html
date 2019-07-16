@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="lib/bootstrap-3.3.7/css/bootstrap.css">
+        <style>
+        body {
+            background: #fffbb2;
+            /* background-size: cover; */
+        }
+        .class-wrap-div {
+            min-height: 700px;
+        }
+        .class-todo-container,.class-done-status-container,.class-add-form-contianer {
+            width: 33%;
+            height: 700px;
+            margin-right: 7px;
+            float: left;
+
+        }
+        .class-todo-container,.class-done-status-container {
+            border-right: 2px dashed black;
+        }
+        .class-add-form-contianer {
+            margin-right: -7px;
+        }
+        .class-add-form-contianer {
+            height: 100px;
+            /* background: green; */
+            /* box-shadow: 10px 0 black; */
+        }
+        div.class-wrap-div {
+            /* min-width: 800px;
+            min-height: 600px; */
+            /* width: 800px; */
+            /* margin: 0 auto; */
+            /* border: 1px solid blue; */
+        }
+        .class-container,#todo {
+            width: 300px;
+            margin: 0 auto;
+        }
+        .class-todo {
+            background: rgba(66, 66, 66, 0.5);
+            border-radius: 5px;
+        }
+        #todo {
+            /* width: 300px; */
+            /* height: 100px; */
+            /* float: right; */
+            /* margin-top: -100px; */
+            /* background: #666; */
+        }
+        .class-todo-container  {
+            /* width: 300px; */
+            /* height: 100px; */
+            float: left;
+            /* background: yellow; */
+        }
+        .class-done-status-container {
+            /* width: 450px; */
+            /* height: 100px; */
+            /* margin: 0 auto;
+            padding: 0 120px;
+            border-left: 1px dashed black;
+            border-right: 1px dashed black; */
+            /* background: blue; */
+        }
+        p.class-todo-content {
+            display: inline;
+            color: blue;
+
+        }
+        .class-done {
+            /* 如果用户点击了完成按钮，给文本添加删除线属性 */
+            margin: 20px auto;
+            width: 60%;
+            padding: 15px;
+            background: rgba(66, 66, 66, 0.5);
+            border-radius: 5px;
+            /* text-decoration: line-through; */
+            color: #f69fbf;
+        }
+        .class-done p {
+            color: lightblue;
+            /* text-align: center; */
+            line-height: 25px;
+            font-size: 15px;
+        }
+        div.class-todo {
+            margin: 20px auto;
+            width: 60%;
+            padding: 15px;
+        }
+        div.class-todo p {
+            color: lightblue;
+            /* text-align: center; */
+            line-height: 25px;
+            font-size: 15px;
+
+        }
+        p.todo-container-header,p.done-status-container-header,p.add-form-contianer-header {
+            color: lightblue;
+            font-size: 25px;
+            text-align: center;
+            line-height: 40px;
+        }
+        input[type="text"] {
+            /* 清除input的border */
+            border: none;
+            display: inline-block;
+            height: 25px;
+            width: 100%;
+            position: relative;
+        }
+        input.class-title-input {
+            /* left: 30px; */
+            background: #fffbb2;
+            /* 在清除完input的border以后，添加一个border-bottom */
+
+            border-bottom: 1px solid green;
+
+        }
+        input.class-desc-input {
+            background: #fffbb2;
+            /* left: 23px; */
+            border-bottom: 1px solid green;
+        }
+        .class-input-button {
+            /* border: none; */
+            display: inline-block;
+            width: 100%;
+            /* background: #f2afa9; */
+        }
+        .class-done-button,.class-delete-button,.class-input-button {
+            border: none;
+            background: #f2afa9;
+        }
+        /* 设置提交按钮鼠标悬浮时的北京颜色 */
+        .class-input-button:hover {
+            background: #e35561;
+        }
+
+        .class-done-button:hover {
+            background: #e35561;
+        }
+        .class-delete-button:hover {
+            background: #e35561;
+        }
+
+        .class-input-button:focus {
+            background: #f2afa9;
+        }
+        /* 设置提交按钮点击时的颜色 */
+        .class-input-button:active {
+            background: #f5c7a3;
+        }
+        /* 清除下拉菜单select自带样式 */
+        select {
+            /* 清除select边框样式 */
+            border: none;
+            /* 清除select聚焦时的边框颜色 */
+            outline: none;
+            /* 隐藏select下拉图标 */
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+
+        }
+        select {
+            background: #fffbb2;
+            /* 将select的宽高等于div的宽高 */
+            width: 100%;
+            height: 45px;
+            padding-left: 60%;
+
+        }
+        /* 包裹在下拉菜单外面的div容器
+           设置这个容器的样式来代替select的样式
+         */
+        div.class-select-contianer {
+
+            display: inline-block;
+            width: 50%;
+            height: 45px;
+            /* margin-top: -25px; */
+            border-radius: 5px;
+            /* 增加一个盒阴影 */
+            /* box-shadow: 0 0 5px #ccc; */
+            position: relative;
+            left: 65px;
+        }
+        .class-task-type {
+            /* float: left; */
+            opacity: 0.5;
+            display: inline;
+        }
+        /* 使用伪类给select添加自己想用的图标 */
+        div.class-select-contianer::after {
+            content: "\200B";
+            width: 32px;
+            height: 100%;
+            background: url("img/arrow.png") no-repeat center;
+            /* 通过定位将图标放在合适的位置 */
+            position: absolute;
+            pointer-events: auto;
+        }
+        /* 清除button的默认样式 */
+        /* button { */
+           /* padding: 0;
+           border: none;
+           font: inherit;
+           color: inherit;
+           background-color: transparent; */
+           /* show a hand cursor on hover; some argue that we
+           should keep the default arrow cursor for buttons */
+           /* cursor: pointer; */
+       /* } */
+       /* 自定义button样式 */
+       /* .btn { */
+          /* 默认为button 但是在<a>上依然有效 */
+          /* display: inline-block;
+          text-align: center;
+          text-decoration: none; */
+
+          /* 创造上下间距一定的空间 */
+          /* margin: 2px 0; */
+
+          /* border透明 (当鼠标悬停时上色) */
+          /* border: solid 1px transparent;
+          border-radius: 4px; */
+
+          /* padding大小与字体大小相关 (no width/height) */
+          /* padding: 0.5em 1em; */
+
+          /* 确保字体颜色和背景色有足够区分度! */
+          /* color: #ffffff;
+          background-color: #9555af; */
+    /* } */
+    </style>
+    <title>todo-list</title>
+</head>
+<body>
+    <div class="class-wrap-div">
+        <div class="class-todo-container">
+            <p class="todo-container-header">待办事项</p>
+        </div>
+        <div class="class-done-status-container">
+            <p class="done-status-container-header">完成事项</p>
+        </div>
+        <div class="class-add-form-contianer">
+            <p class="add-form-contianer-header">添加事项</p>
+            <form id="todo">
+               <p>
+                   <!-- <label for="id-title-input">title</label> -->
+                   <input class="class-title-input" type="text" placeholder="标题" name="" value="" id="id-title-input">
+               </p>
+               <p>
+                   <!-- <label for="id-desc-input">desc</label> -->
+                   <input class="class-desc-input" type="text" placeholder="描述" name="" value="" id="id-desc-input">
+               </p>
+                <div>
+                    <div class="class-task-type">任务类型</div>
+                    <div class="class-select-contianer">
+                        <select name="" id="id-task-type">
+                            <option value="运动">运动</option>
+                            <option value="娱乐">娱乐</option>
+                            <option value="出行">出行</option>
+                            <option selected value="学习">学习</option>
+                            <option value="其他">其他</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <!-- <button class="class-input-button" type="button" name="button">提交</button> -->
+                <!-- <input class="class-input-button btn" type="button" name="button" value="提交"> -->
+                <button class="class-input-button btn btn-primary" type="button" name="button">提交</button>
+            </form>
+        </div>
+
+
+    </div>
+    <script src="lib/jquery/jquery-2.2.1.min.js" charset="utf-8"></script>
+    <script src="lib/bootstrap-3.3.7/js/bootstrap.js" charset="utf-8"></script>
+    <script>
+        var buttonElement = document.querySelectorAll('.class-input-button')[0] ;
+        var todoContainerDiv = document.querySelectorAll('.class-todo-container')[0] ;
+        var doneContainerDiv = document.querySelectorAll('.class-done-status-container')[0] ;
+        buttonElement.addEventListener('click', function(e) {
+            var inputTitleElement = document.querySelectorAll('.class-title-input')[0] ;
+            var inputDescElement = document.querySelectorAll('.class-desc-input')[0] ;
+            var selectedElement = document.querySelectorAll('#id-task-type')[0] ;
+            var taskTitle = inputTitleElement.value ;
+            var taskDesc = inputDescElement.value ;
+            var optionList = selectedElement.children ;
+            // 存放被选中任务类型
+            var selectedTaskType = '' ;
+            for (item of optionList) {
+                if (item.selected) {
+                    selectedTaskType = item.innerHTML ;
+                }
+            }
+            // console.log(selectedTaskType)
+            // console.log(taskTitle)
+            // console.log(taskDesc)
+            // console.log(selectedElement)
+            var currentDateTime = getDateAndTime() ;
+            console.log(currentDateTime) ;
+            var html = `<div class="class-todo">
+                            <p class="class-todo-title">标题：${taskTitle}</p>
+                            <p class="class-todo-desc">描述：${taskDesc}</p>
+                            <p class="class-todo-type">类型：${selectedTaskType}</p>
+                            <p class="class-add-time">添加时间：${currentDateTime}</p>
+                            <button class="class-done-button btn btn-primary" type="button" name="button">完成</button>
+                            <button class="class-delete-button btn btn-primary" type="button" name="button">删除</button>
+                        </div>`
+            // 向todoContainerDiv元素内插入html内容
+            todoContainerDiv.insertAdjacentHTML('beforeend', html) ;
+        })
+        todoContainerDiv.addEventListener('click', function(e) {
+            var target = e.target ;
+            console.log(target.parentNode)
+            // 获取target 元素的所有兄弟节点
+            // chilren可以获取父节点下的所有子元素
+            // var childrenElement = target.parentNode.children ;
+            // 获取任务
+            // var todoContainerElement = document.querySelectorAll('.class-todo')[0] ;
+            console.log(target.parentElement) ;
+            // console.log(typeof(childrenElement)) ;
+            // console.log(childrenElement) ;
+            if (target.classList.contains('class-done-button')) {
+                // 点击的是"完成"按钮,则在待办事项中删除这个任务，并添加到完成事项中去
+                //
+                // 获取任务详情
+                var task = target.parentNode.children ;
+                console.log(task) ;
+                var taskHtmlContent = `<div class="class-done">
+                    <p class="class-todo-title">${task[0].innerHTML}</p>
+                    <p class="class-todo-desc">${task[1].innerHTML}</p>
+                    <p class="class-todo-type">${task[2].innerHTML}</p>
+                    <button class="class-delete-button btn btn-primary" type="button" name="button">删除</button>
+                </div>` ;
+                // 添加到完成事项中
+                doneContainerDiv.insertAdjacentHTML('beforeend', taskHtmlContent) ;
+                deleteElement(target.parentNode) ;
+                // childrenElement[1].classList.add('class-done') ;
+                // console.log(target.parentNode.innerText)
+
+            } else if (target.classList.contains('class-delete-button')) {
+                 deleteElement(target.parentNode) ;
+                // 找到父节点
+                // var parentNode = todoContainerElement.parentNode ;
+                // 移除子节点，使用removeChild()方法,移除父节点下，指定的子元素
+                // parentNode.removeChild(todoContainerElement) ;
+                // 可以直接使用当前节点的remove()方法删除这个节点，但是这个方法是实验性质的，不建议在生成环境中使用
+                // target.parentNode.remove() ;
+            }
+            console.log(e) ;
+        })
+
+        // 实现"完成事项"中任务的删除
+        doneContainerDiv.addEventListener('click', function(e) {
+            var target = e.target ;
+            if (target.classList.contains('class-delete-button')) {
+                deleteElement(target.parentNode) ;
+            }
+        })
+
+        /**
+         * [deleteElement description] 删除某个元素
+         * @param  {[type]} element 待删除的元素
+         * @return {[type]}         [description]
+         */
+        function deleteElement(element) {
+            // 首先获取元素的父节点
+            var parentElement = element.parentNode ;
+            // 调用父节点的removeChild()方法删除当前元素
+            parentElement.removeChild(element) ;
+
+        }
+        /**
+         * [getDateAndTime description] 格式化的当前时间
+         * @return {[type]} [description]
+         */
+        function getDateAndTime() {
+            var currentDate = new Date() ;
+            // 获取当前年份，四位
+            var year = currentDate.getFullYear() ;
+            // 获取当前月份，0-11
+            var month = currentDate.getMonth() + 1 ;
+            if (month < 10) {
+                month = '0' + month ;
+            }
+            // 获取当前日 1-31
+            var day = currentDate.getDate() ;
+            if (day < 10) {
+                day = '0' + day ;
+            }
+            // 获取当前的小时数 0-23
+            var hour = currentDate.getHours() ;
+            if (hour < 10) {
+                hour = '0' + hour ;
+            }
+            // 获取当前的分钟 0-59
+            var minute = currentDate.getMinutes() ;
+            if (minute < 10) {
+                minute = '0' + minute ;
+            }
+            // 获取当前的秒数 0-59
+            var second = currentDate.getSeconds() ;
+            if (second < 10) {
+                second = '0' + second ;
+            }
+            return `${year}-${month}-${day} ${hour}:${minute}:${second}` ;
+        }
+    </script>
+</body>
+</html>
