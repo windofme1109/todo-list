@@ -12,5 +12,14 @@
 1. 对于待办事项并没有做持久化处理。所以一旦刷新页面，任务会全部消失
 2. 布局采用浮动方式实现。
 
+整体界面
+![todo-list](https://github.com/windofme1109/todo-list/blob/master/img/todo-list_2.png)
+
+添加事项
+![add-event](https://github.com/windofme1109/todo-list/blob/master/img/add.png)
+
+完成事项
+![finish-event](https://github.com/windofme1109/todo-list/blob/master/img/finish.png)
+
 
 
